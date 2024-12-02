@@ -1,4 +1,4 @@
-package days;
+package adventOfCode.year2024;
 
 import java.util.ArrayList;
 import java.util.Collections;
