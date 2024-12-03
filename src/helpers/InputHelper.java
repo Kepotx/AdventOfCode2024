@@ -21,9 +21,9 @@ public class InputHelper
         return Files.readAllLines(Path.of("inputs/day" + day + (test ? "test" : "") + ".txt"));
 	}
 	
-	public static String getInputAsString(int day) throws IOException
+	public static String getInputAsString(int day, boolean test) throws IOException
 	{
-		return Files.readString(Path.of("inputs/day" + day + ".txt"));
+		return Files.readString(Path.of("inputs/day" + day + (test ? "test" : "") + ".txt"));
 	}
 
 	public static <T> List<T> getInputAsGenericList(int day, boolean test, Function<String, T> mapToEntry) throws IOException 
@@ -50,18 +50,18 @@ public class InputHelper
 	 * @day day the day to parse
 	 * @day separatorRegex the regex separator to use to split the inputs
 	 */
-	public static List<String> getInputWithSeparator(int day, String separatorRegex) throws IOException 
+	public static List<String> getInputWithSeparator(int day, boolean test, String separatorRegex) throws IOException 
 	{
-        return Parser.parseInput(getInputAsString(1), separatorRegex);
+        return Parser.parseInput(getInputAsString(day, test), separatorRegex);
     }
 	
 	/**
 	 * @day day the day to parse
 	 * @day separatorRegex the regex separator to use to split the inputs
 	 */
-	public static List<String> getInputWithSeparatorTrim(int day, String separatorRegex) throws IOException 
+	public static List<String> getInputWithSeparatorTrim(int day, boolean test, String separatorRegex) throws IOException 
 	{
-        return Stream.of(getInputAsString(1).split(separatorRegex))
+        return Stream.of(getInputAsString(day, test).split(separatorRegex))
                 .map(String::trim)
                 .collect(Collectors.toList());
     }
