@@ -28,5 +28,6 @@ replay_pid*
 /inputs/
 
 # Eclipse
+/lib/
 .classpath
 .project
