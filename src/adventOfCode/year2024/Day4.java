@@ -11,7 +11,7 @@ public class Day4
 {
 	public static void main(String... args) throws Exception
 	{
-		List<List<Character>> listOfChar = InputHelper.getInputAsGenericList(4, false, lineParser());
+		List<List<Character>> listOfChar = InputHelper.getInputAsGridOfChars(4, false);
 
 		System.out.printf("part 1 : " + countOccurrences(listOfChar, "XMAS") + "\n");
 		System.out.printf("part 2 : " + findXMASCross(listOfChar) + "\n");
@@ -130,7 +130,7 @@ public class Day4
 				&& grid.get(row).get(col) == 'A'
 				&& grid.get(row + 1).get(col + 1) == 'M');
 
-		boolean topRightToBottomLeft = (grid.get(row - 1).get(col + 1) == 'M' 
+		boolean topRightToBottomLeft = (grid.get(row - 1).get(col + 1) == 'M'
 				&& grid.get(row).get(col) == 'A'
 				&& grid.get(row + 1).get(col - 1) == 'S')
 				|| (grid.get(row - 1).get(col + 1) == 'S'

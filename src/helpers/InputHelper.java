@@ -8,7 +8,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class InputHelper 
+public class InputHelper
 {
 
 	public static List<String> getInputAsListOfLines(int day) throws IOException
@@ -26,7 +26,11 @@ public class InputHelper
 		return Files.readString(Path.of("inputs/day" + day + (test ? "test" : "") + ".txt"));
 	}
 
-	public static <T> List<T> getInputAsGenericList(int day, boolean test, Function<String, T> mapToEntry) throws IOException 
+	public static List<List<Character>> getInputAsGridOfChars(int day, boolean test) throws IOException
+    {
+        return InputHelper.getInputAsGenericList(day, test, line -> line.chars().mapToObj(e -> (char) e).collect(Collectors.toList()));
+    }
+	public static <T> List<T> getInputAsGenericList(int day, boolean test, Function<String, T> mapToEntry) throws IOException
 	{
         return getInputAsListOfLines(day, test)
                     .stream()
@@ -34,9 +38,9 @@ public class InputHelper
                     .collect(Collectors.toList());
     }
 	
-	public static <T> List<T> parseInput(String input, String separatorRegex, Function<String, T> mapToEntry) 
+	public static <T> List<T> parseInput(String input, String separatorRegex, Function<String, T> mapToEntry)
 	{
-        if (input == null || input.isBlank()) 
+        if (input == null || input.isBlank())
         {
             return List.of();
         }
@@ -50,7 +54,7 @@ public class InputHelper
 	 * @day day the day to parse
 	 * @day separatorRegex the regex separator to use to split the inputs
 	 */
-	public static List<String> getInputWithSeparator(int day, boolean test, String separatorRegex) throws IOException 
+	public static List<String> getInputWithSeparator(int day, boolean test, String separatorRegex) throws IOException
 	{
         return Parser.parseInput(getInputAsString(day, test), separatorRegex);
     }
@@ -59,7 +63,7 @@ public class InputHelper
 	 * @day day the day to parse
 	 * @day separatorRegex the regex separator to use to split the inputs
 	 */
-	public static List<String> getInputWithSeparatorTrim(int day, boolean test, String separatorRegex) throws IOException 
+	public static List<String> getInputWithSeparatorTrim(int day, boolean test, String separatorRegex) throws IOException
 	{
         return Stream.of(getInputAsString(day, test).split(separatorRegex))
                 .map(String::trim)

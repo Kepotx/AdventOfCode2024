@@ -1,5 +1,7 @@
 package helpers;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Point
@@ -53,4 +55,39 @@ public class Point
 	{
 		this.y = y;
 	}
+
+    public Point getLeftPoint()
+    {
+        return new Point(x - 1, y);
+    }
+
+    public Point getRightPoint()
+    {
+        return new Point(x + 1, y);
+    }
+
+    public Point getTopPoint()
+    {
+        return new Point(x, y - 1);
+    }
+
+    public Point getBottomPoint()
+    {
+        return new Point(x, y + 1);
+    }
+    
+    public List<Point> getOrthogonalNeighbors()
+    {
+        List<Point> neighbors = new ArrayList<>();
+        neighbors.add(getLeftPoint());
+        neighbors.add(getRightPoint());
+        neighbors.add(getTopPoint());
+        neighbors.add(getBottomPoint());
+        return neighbors;
+    }
+    
+    public boolean isOutOfBonds(int rows, int cols)
+    {
+        return getX() >= 0 && getX() < rows && getY() >= 0 && getY() < cols;
+    }
 }
